@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+{% load static %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Beauty</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="{% static "krasotka/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/animations.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/main.css" %}">
+        <script src="{% static "krasotka/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+        <!--[if lt IE 9]>
+            <script src="{% static "krasotka/js/vendor/respond.min.js" %}></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <section id="logo" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="navbar-brand" href="">
+                        Красотка<span>Салон красоты </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        
+     <section id="mainslider" class="color_section bg_image gradient">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="{% static "krasotka/example/flex_slide01.jpg" %}" alt="" />
+                    <div class="slide_description_wrapper">
+                        <div class="slide_description">
+                            <h4 data-animation="slideInDown">Добро пожаловать к нам</h4>
+                            <h2 data-animation="bounce">Красотка</h2>
+                            <h3 data-animation="fadeInLeft">Салон красоты</h3>
+                        </div>
+                    </div> 
+                </li>
+                <li>
+                    <img src="{% static "krasotka/example/flex_slide02.jpg" %}" alt="" />
+                    <div class="slide_description_wrapper">
+                        <div class="slide_description">
+                            <h4 data-animation="pullUp">Зайдите на наш сайт</h4>
+                            <h4 data-animation="pullDown">и узнайте много</h4>
+                            <h4 data-animation="fadeInLeft">новой информации</h4>
+                        </div>
+                    </div> 
+                </li>
+                
+            </ul>
+        </div>
+    </section>
+
+    <header id="header" class="darkgrey_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 mainmenu_wrap">
+                    <div class="main-menu-icon visible-xs">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav>
+                        <ul id="mainmenu" class="menu nav sf-menu responsive-menu superfish">
+                            <li class="active">
+                                <a href="">ГЛАВНАЯ</a>
+                            </li>
+                            <li class="">
+                                <a href="#info">О НАС</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#folio">Портфолио</a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+                                        <a href="{%url "gallery" %}">Галлерея</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#belowcontent">БЛОГ</a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="">
+                                        <a href={% url "blog" %}>ПОСТЫ</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="">
+                                <a href="#contact">КОНТАКТЫ</a>
+                            </li>
+
+                        <li>
+                             {% if  user.is_authenticated %}
+                <p><a href='{% url 'auth_logout' %}?next=/./' class="theme_btn">Выйти </a><p/>
+                </li>
+            {% else %}
+                                 <li>
+                <p><a href='{% url 'auth_login' %}' class="theme_btn">Войти</a><p/>
+                </li>
+            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% block content %}
+    <section id="info" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="block-header to_animate" data-animation="fadeInDown" data-delay="300">НАШ СЕРВИС</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="block col-sm-4 to_animate" data-animation="fadeInLeft" data-delay="300">
+                    <div class="single_teaser icons style1">
+                        <div class="icons_introimg image-icon">
+                            <i class="rt-icon">
+                             <img class="" width="150" height="110" src=  "{% static "krasotka/example/gallery/01.jpg" %}"
+                            </i>
+                        </div>
+                        <h3><a href="#">ШУГАРИНГ</a></h3>
+                        <p class="introtext">Lorem ipsum dolor met consetetur sadipscing elitrsed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.</p>
+                    </div>
+                </div>      
+                <div class="block col-sm-4 to_animate" data-animation="fadeInUp" data-delay="300">
+                    <div class="single_teaser icons style1">
+                        <div class="icons_introimg image-icon">
+                            <i class="rt-icon">
+                             <img class="" width="150" height="110" src=  "{% static "krasotka/example/gallery/01.jpg" %}"
+                            </i>
+                        </div>
+                        <h3><a href="#">ШУГАРИНГ</a></h3>
+                        <p class="introtext">Stet clita kasd gubergren, no sea takimata sanctus est consetetur sadipscing elitr accusam aliquyam diam diam dolore dolores duo eirmod.</p>
+                    </div>
+                </div>      
+                <div class="block col-sm-4 to_animate" data-animation="fadeInRight" data-delay="300">
+                    <div class="single_teaser icons style1">
+                        <div class="icons_introimg image-icon">
+                             <i class="rt-icon">
+                             <img class="" width="150" height="110" src=  "{% static "krasotka/example/gallery/01.jpg" %}"
+                            </i>
+                        </div>
+                        <h3><a href="#">ШУГАРИНГ</a></h3>
+                        <p class="introtext">At accusam aliquyam diam diam dolore dolores eirmodeos erat, et nonumy sed tempor et et invidunt justo labore stet clita.</p>
+                    </div>
+                </div>      
+
+            </div>
+        </div>
+    </section>
+
+
+    <section id="infoslider" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <!-- slider -->
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="{% static "krasotka/example/slide_whatwedo1.png" %}" alt="" />
+                                <div class="row">
+                                </div>
+                            </li>
+                            <li>
+                                <img src="{% static "krasotka/example/slide_whatwedo2.png" %}" alt="" />
+
+                            </li>
+                            <li>
+                                <img src="{% static "krasotka/example/slide_whatwedo3.png" %}" alt="" />
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+
+
+
+    <section id="folio" class="color_section gradient bg_image">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="block-header text-center to_animate" data-animation="slideUp">НАШИ РАБОТЫ</h2>
+                    <p class="text-center">
+                        Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit<br>
+                        anim id est laborum aute iure reprehenderit in voluptate.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <ul id="gallery-grid" class="gallery-grid col-sm-12">
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/01.jpg"%}" data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/01.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Lorem Ipsum Dolor</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 1 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/02.jpg" %}"  data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/02.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Quis aute iure</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 2 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/03.jpg" %}"data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/03.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Reprehenderit Oluptate</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 3 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/04.jpg" %}" data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/04.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Velit Esse Cillum</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 4 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/05.jpg" %}" data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/05.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Lorem Ipsum Dolor</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 5 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/06.jpg" %}" data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/06.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Quis aute iure</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 6 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/07.jpg" %}" data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/07.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Reprehenderit Oluptate</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 7 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#" data-largesrc="{% static "krasotka/example/gallery/08.jpg" %}"data-title="Project Name 1" data-description="data-description">
+                            <img src="{% static "krasotka/example/gallery/08.jpg" %}" alt=""/>
+                        </a>
+                        <h3>Velit Esse Cillum</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>Project 8 Details</h3>
+                                <p class="description">
+                                    At vero eos et accusam et justo duo dolores et ea rebum. Ut wisi enim adinim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                </p>
+                                <p class="skills"><span>Skills:</span> Photography, Photoshop, Illustration</p>
+                                <p class="client"><span>Client:</span> <a href="#">Client</a></p>
+                                <p class="location"><span>Location:</span> <a href="#">www.project.com</a></p>
+                                <p class="view-project"><a href="{% url "gallery" %}" class="theme_btn">View Project</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="events" class="grey_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 block to_animate" data-animation="fadeInLeft" data-delay="300">
+                    <h3>Latest Testimonials</h3>
+                    <div id="carousel-testimonials" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-testimonials" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-testimonials" data-slide-to="1"></li>
+                            <li data-target="#carousel-testimonials" data-slide-to="2"></li>
+                        </ol>                        
+
+                       
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="{% static "krasotka/example/team/01.jpg" %}" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4>Jhon Smith</h4>
+                                        <p>
+                                            Google Inc.
+                                        </p>
+                                    </div>
+                                </div>
+                                <p>
+                                    Ullamco laboris nialiquid exea commodi consat. Ut enim minim veniam norud exotation.
+                                </p>
+                            </div>
+                            
+                            <div class="item">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="{% static "krasotka/example/team/02.jpg" %}" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4>Michael Anderson</h4>
+                                        <p>
+                                            Google Inc.
+                                        </p>
+                                    </div>
+                                </div>
+                                <p>
+                                    Ullamco laboris nialiquid exea commodi consat. Ut enim minim veniam norud exotation.
+                                </p>
+                            </div>
+                            
+                            <div class="item">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="{% static "krasotka/example/team/03.jpg" %}" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4>Michael Anderson</h4>
+                                        <p>
+                                            Google Inc.
+                                        </p>
+                                    </div>
+                                </div>
+                                <p>
+                                    Ullamco laboris nialiquid exea commodi consat. Ut enim minim veniam norud exotation.
+                                </p>
+                            </div>
+                            
+
+                        </div>
+                    </div> <!-- eof carousel -->
+                </div>
+                
+                <div class="col-sm-4 block to_animate" data-animation="fadeInUp" data-delay="300">
+                    <h3>Our Highlights</h3>
+                    <p>Lorem ipsum dsamet consetetur sadipscing elitacusam aliquyam diam diam dolore dolores duo eirmod eos eratet nonumy.</p>
+                    <ul class="list1">
+                        <li>Sed tempor invidunt justo labore </li>
+                        <li>Quis aute iure reprehenderit in voluptate</li>
+                        <li>Velit esse cillum dolore eu fugiat nulla </li>
+                        <li>Ut wisi enim ad minim veniam</li>
+                        <li>Quis nostrud exerci tation ullamcorper </li>
+                    </ul> 
+                </div>
+
+                <div class="col-sm-4 block to_animate" data-animation="fadeInRight" data-delay="300">
+
+                    <h3>Why Choose Us?</h3>
+                    <!-- collapse -->
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        Lorem ipsum dolor sit amet 
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <p>Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt enim eiusmod high life accusamus terry richardson.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" class="collapsed">
+                                        Consecteer Adipiscing
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>
+                                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt enim eiusmod high life accusamus terry richardson.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" class="collapsed">
+                                        Sed Diam Nonummy Euismod
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>
+                                        Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt enim eiusmod high life accusamus terry richardson.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- eof collapse -->
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+        
+
+
+
+    <section id="prices" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="block-header">НАШИ ЦЕНЫ</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi illo neque accusantium aliquam veniam temporibus aut enim placeat cum dolor.</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <ul class="pricing-table style1">
+                        <li class="plan-name"><p>ШУГАРИНГ</p></li>
+                        <li class="plan-price"><span>$</span> <span>39</span> <p>За процедуру</p></li>
+
+
+                    </ul>
+                </div>
+
+                <div class="col-sm-4">
+                    <ul class="pricing-table style1">
+                        <li class="plan-name"><p>ШУГАРИНГ</p></li>
+                        <li class="plan-price"><span>$</span> <span>49</span> <p>За процедуру</p></li>
+                        <li class="features-list">
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-sm-4">
+                    <ul class="pricing-table style1 border-color3">
+                        <li class="plan-name"><p>ШУГАРИНГ</p></li>
+                        <li class="plan-price"><span>$</span> <span>99</span> <p>За процедру</p></li>
+                        <li class="features-list">
+                        </li
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="belowcontent" class="grey_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="block-header to_animate" data-animation="hatch">Последние посты</h2>
+                    <p class="to_animate" data-animation="stretchLeft">Latest from our blog, nam liber tempor cum soluta nobis eleifend option congue nihil excepteur sint obcaecat cupiditat non proident.</p>
+                </div>
+            </div>
+
+            <div class="row widget_from_blog">
+                <div class="col-sm-6">
+                    <article class="post format-standard primary_post">
+                        <header class="entry-header">
+                            <div class="entry-thumbnail">
+                                 {% for post in post_1 %}
+
+                                 <img class="" width="500" height="300"   src="{% thumbnail post.img 500x300 crop%}" alt="{{ p.title|truncatewords:20 }}"/>
+                            </div>
+                        </header>
+                        <!-- .entry-header -->
+
+                        <div class="entry-content">
+                            <h2 class="entry-title">
+                                <a href="{% url "post" id=post.pk %}" rel="bookmark">{{ post.title|truncatewords:20 }}</a>
+                            </h2>
+                            <p class="date">
+                                <span class="entry-date">{{ post.published_date }}</span>
+                            </p>
+                            <p>{{ post.content|truncatewords:50 }}</p>
+
+
+                        </div>
+                        {% endfor %}
+                        <!-- .entry-content -->
+                        <div class="entry-share">
+                            <p class="text-center">
+                                <a class="socialico-facebook" href="#" title="Facebook">#</a>
+                                <a class="socialico-twitter" href="#" title="Twitter">#</a>
+                                <a class="socialico-google" href="#" title="Google">#</a>
+                            </p>
+                        </div>
+                        <!-- .entry-share -->
+                    </article>
+                </div>
+
+
+
+               <div class="row widget_from_blog">
+                <div class="col-sm-6">
+                    <article class="post format-standard primary_post">
+                        <header class="entry-header">
+                            <div class="entry-thumbnail">
+                                {% for post in post_2 %}
+
+                                 <img class="" width="500" height="300"   src="{% thumbnail post.img 500x300 crop%}" alt="{{ p.title|truncatewords:20 }}"/>
+                            </div>
+                        </header>
+                        <!-- .entry-header -->
+
+                        <div class="entry-content">
+                            <h2 class="entry-title">
+                                <a href="{% url "post" id=post.pk %}" rel="bookmark">{{ post.title|truncatewords:20 }}</a>
+                            </h2>
+                            <p class="date">
+                                <span class="entry-date">{{ post.published_date }}</span>
+                            </p>
+                            <p>{{ post.content|truncatewords:50 }}</p>
+
+                        </div>
+                        {% endfor %}
+                        <!-- .entry-content -->
+                        <div class="entry-share">
+                            <p class="text-center">
+                                <a class="socialico-facebook" href="#" title="Facebook">#</a>
+                                <a class="socialico-twitter" href="#" title="Twitter">#</a>
+                                <a class="socialico-google" href="#" title="Google">#</a>
+                            </p>
+                        </div>
+                        <!-- .entry-share -->
+                    </article>
+                </div>
+
+                   <div class="row">
+                <div class="col-sm-12">
+                    <p class="text-center loadmore">
+                        <a href="{% url "blog" %}" class="theme_btn">Посмотреть все</a>
+                    </p>
+                </div>  
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="color_section parallax gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="block-header to_animate" data-animation="slideExpandUp">Наши контакты</h2>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="block col-sm-6">
+                    <h3>Форма обратной связи</h3>
+                    <form class="contact-form" method="POST" enctype="multipart/form-data" action='{% url "send" %}' >
+
+                        {% csrf_token %}
+                        <p class="contact-form-name" method="post">
+                            <label for="name">Name <span class="required">*</span></label>
+
+                            <input type="text" required="required" size="30" value="" name="name" id="name"  class="form-control" placeholder="Имя">
+                        </p>
+                        <p class="contact-form-email" method="post">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email"  size="30" value="" name="email" id="email"  required class="form-control"  placeholder="Email">
+                        </p>
+                        <p class="contact-form-subject" method="post">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <input type="text" aria-required="true" size="30" value="" name="subject" id="subject" required class="form-control" placeholder="Тема">
+                        </p>
+                        <p class="contact-form-message" method="post">
+                            <label for="message">Message</label>
+                            <textarea aria-required="true" rows="8" cols="45" name="message" id="message" required class="form-control"  placeholder="Сообщение"></textarea>
+                        </p>
+                        <p class="contact-form-submit vertical-margin-40">
+                        <p>*Все поля обязательно должны быть заполнены </p>
+                            <a href="javascript:document.forms[0].submit()" class="theme_btn">Отправить</a>
+
+
+                            <input type="reset" value="Очистить" id="contact_form_reset" name="contact_submit" class="theme_btn inverse">
+                        </p>
+                    </form>
+                </div>
+
+                <div class="block widget_text col-sm-6">
+                    <h3>Контактная информация</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, aspernatur, velit. Adipisci, animi, molestiae, neque voluptatum non voluptas atque aperiam nam sed quidem quae harum ipsum sit veritatis expedita. Laudantium.</p>
+                    <p>
+                        <i class="rt-icon-location"></i> <strong>Адрес:</strong> г. Днепр, улица Рабочая, д. ... оф....<br>
+                        <i class="rt-icon-megaphone"></i> <strong>Phone: </strong>+380.........<br>
+                        <i class="rt-icon-mail2"></i> <strong>Email: </strong><a href="mailto:info@company.com">krasotka.dnepr@gmail.com</a><br>
+                        <i class="rt-icon-world"></i> <strong>Website: </strong><a href="">www.krasotka.dp.ua</a>
+                    </p>
+                    <h3>Мы в социальных сетях</h3>
+                    <p id="social-bottom">
+                        <a class="socialico-facebook monochrome" href="#" title="Facebook">#</a>
+                        <a class="socialico-twitter monochrome" href="#" title="Twitter">#</a>
+                        <a class="socialico-google monochrome" href="#" title="Google">#</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="col-sm-12 text-center">
+                    Copyright &copy; Popov&Co 2017
+    </div>
+
+    </body>
+
+        <script src="{% static "krasotka/js/vendor/jquery-1.11.1.min.js" %}" ></script>
+        <script src="{% static "krasotka/js/vendor/jquery-migrate-1.2.1.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/bootstrap.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/placeholdem.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/hoverIntent.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/superfish.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.actual.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.appear.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquerypp.custom.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.elastislide.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.flexslider-min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.prettyPhoto.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.easing.1.3.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.ui.totop.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.isotope.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.easypiechart.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jflickrfeed.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.sticky.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/owl.carousel.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.nicescroll.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.fractionslider.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.scrollTo-min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.localscroll-min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.parallax-1.1.3.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.bxslider.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.funnyText.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.countTo.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/grid.js" %}"></script>
+        <script src="{% static "krasotka/twitter/jquery.tweet.min.js" %}"></script>
+        <script src="{% static "krasotka/js/plugins.js" %}"></script>
+        <script src="{% static "krasotka/js/main.js" %}"></script>
+
+
+</html>
+{% endblock %}

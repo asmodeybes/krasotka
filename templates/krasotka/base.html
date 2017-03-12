@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Beauty</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="{% static "krasotka/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/animations.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/main.css" %}">
+        <script src="{% static "krasotka/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+        <!--[if lt IE 9]>
+            <script src="{% static "krasotka/js/vendor/respond.min.js" %}></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <section id="logo" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="navbar-brand" href="">
+                        Красотка<span>Салон красоты </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+ <header id="header" class="darkgrey_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 mainmenu_wrap">
+                    <div class="main-menu-icon visible-xs">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav>
+                        <ul id="mainmenu" class="menu nav sf-menu responsive-menu superfish">
+                            <li class="active">
+                                <a href="">Home</a>
+                            </li>
+                            <li class="">
+                                <a href="#info">About</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#folio">Folio</a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+                                        <a href="gallery.html">Folio 4 columns</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="gallery3.html">Folio 3 columns</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="gallery5.html">Folio 5 columns</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#belowcontent">Blog</a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+                                        <a href="blog.html">blog</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="blog-single.html">Blog Post</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="./animations.html">Features</a>
+                                <ul class="dropdown-menu">
+                                    <li class="">
+                                        <a href="icons.html">Icons</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="./animations.html">Animations</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="404.html">404</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+ <section id="abovecontent" class="color_section bg_image gradient">
+        <div class="container"><div class="row">
+            <div class="block col-sm-12 text-center">
+                <ul class="breadcrumb">
+                    <li><a href="" class="pathway">Home</a></li>
+                    <li><span>About Us</span></li>
+                </ul>
+            </div>
+        </div></div>
+    </section>

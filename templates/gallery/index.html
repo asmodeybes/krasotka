@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+{% load static %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Beauty</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="{% static "krasotka/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/animations.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/main.css" %}">
+        <script src="{% static "krasotka/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+        <!--[if lt IE 9]>
+            <script src="js/vendor/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <section id="logo" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="navbar-brand" href="">
+                        Красотка<span>Салон красоты</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <header id="header" class="darkgrey_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 mainmenu_wrap">
+                    <div class="main-menu-icon visible-xs">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav>
+                       <ul id="mainmenu" class="menu nav sf-menu responsive-menu superfish">
+                            <li class="">
+                                <a href="{% url "index" %}">ГЛАВНАЯ</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url "index" %}">О НАС</a>
+                            </li>
+                            <li class="active">
+                                <a href="{%url "gallery" %}">Галлерея</a>
+
+                            </li>
+                            <li class="dropdown">
+                                <a href="{% url "blog" %}">БЛОГ</a>
+
+                            </li>
+
+                            <li class="">
+                                <a href="{% url "index" %}">КОНТАКТЫ</a>
+                            </li>
+
+                        <li>
+                             {% if  user.is_authenticated %}
+                <p><a href='{% url 'auth_logout' %}?next=/./' class="theme_btn">Выйти </a><p/>
+                </li>
+            {% else %}
+                                 <li>
+                <p><a href='{% url 'auth_login' %}' class="theme_btn">Войти</a><p/>
+                </li>
+            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="abovecontent" class="color_section bg_image gradient">
+        <div class="container"><div class="row">
+            <div class="block col-sm-12 text-center">
+                <ul class="breadcrumb">
+                    <li><a href="{% url "index" %}" class="pathway">Главная</a></li>
+                    <li><span>Галлерея</span></li>
+
+                </ul>
+            </div>
+        </div></div>
+    </section>
+
+
+    <section id="middle" class="grey_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="block-header">Наше портфолио</h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+     <link rel="stylesheet" href="{% static "blog/css/gallery.css" %}">
+
+{% block content %}
+    <ul class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-lg-12">
+            <h1 class="page-header">Галлерея</h1>
+        </div>
+
+
+            <div class="row">
+
+                <ul id="gallery-grid" class="gallery-grid col-sm-12">
+{% for img in photos %}
+                    <li>
+                        <a href="#" data-largesrc = "{% thumbnail img.image 500x500 crop %}" data-title="#" data-description="data-description">
+                            <img src="{% thumbnail img.image 500x500 crop %}" alt="{{ img.description }}"/>
+                        </a>
+                        <h3>{{ img.description|truncatechars:23 }}</h3>
+                        <div class="portfolio_description">
+                            <div class="block">
+                                <h3>{{ img.description|truncatechars:30 }}</h3>
+                                <p class="description">
+                                   {{ img.content }}
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+
+
+{% endfor %}
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                    </div>
+                </div><!-- /.modal-content -->
+
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </ul>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+                    
+                </ul>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="partners" class="color_section bg_image gradient">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="owl-carousel partners">
+{% for img in photos %}
+                        <div class="item">
+                            <img alt="" src="{% thumbnail img.image 100x100  crop%}">
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            </ul>
+        </div>
+
+
+
+                <div class="col-sm-12 text-center">
+                    Copyright &copy; Popov&Co 2017
+                </div>
+
+ 
+
+    <div class="preloader">
+        <div class="preloaderimg"></div>
+    </div>
+
+
+          <script src="{% static "krasotka/js/vendor/jquery-1.11.1.min.js" %}" ></script>
+        <script src="{% static "krasotka/js/vendor/jquery-migrate-1.2.1.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/bootstrap.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/placeholdem.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/hoverIntent.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/superfish.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.actual.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.appear.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquerypp.custom.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.elastislide.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.flexslider-min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.prettyPhoto.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.easing.1.3.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.ui.totop.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.isotope.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.easypiechart.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jflickrfeed.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.sticky.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/owl.carousel.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.nicescroll.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.fractionslider.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.scrollTo-min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.localscroll-min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.parallax-1.1.3.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.bxslider.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.funnyText.min.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/jquery.countTo.js" %}"></script>
+        <script src="{% static "krasotka/js/vendor/grid.js" %}"></script>
+        <script src="{% static "krasotka/twitter/jquery.tweet.min.js" %}"></script>
+        <script src="{% static "krasotka/js/plugins.js" %}"></script>
+        <script src="{% static "krasotka/js/main.js" %}"></script>
+
+
+
+
+    </body>
+</html>

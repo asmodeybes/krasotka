@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Beauty</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="{% static "krasotka/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/animations.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/main.css" %}">
+        <script src="{% static "krasotka/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+        <!--[if lt IE 9]>
+            <script src="js/vendor/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <section id="logo" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="navbar-brand" href="">
+                        Красотка<span>Салон красоты</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <header id="header" class="darkgrey_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 mainmenu_wrap">
+                    <div class="main-menu-icon visible-xs">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav>
+                        <ul id="mainmenu" class="menu sf-menu responsive-menu superfish">
+                            <li class="">
+                                <a href="{% url "index" %}">Главная</a>
+                            </li>
+                            <li class="">
+                                <a href="about.html">About</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="{% url "gallery" %}">Портфолио</a>
+                                <ul class="dropdown-menu">
+                                    <li class="active">
+                                        <a href="{% url "gallery" %}">Галлерея</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="{% url "blog" %}">Блог</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="./animations.html">Features</a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="">
+                                        <a href="icons.html">Icons</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="./animations.html">Animations</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="404.html">404</a>
+                                    </li>
+                                </ul>
+                            </li>
+                             {% if user.is_authenticated %}
+                            <li class="">
+                                <a href="{% url "create" %}">Создать сообщение</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="abovecontent" class="color_section bg_image gradient">
+        <div class="container"><div class="row">
+            <div class="block col-sm-12 text-center">
+                <ul class="breadcrumb">
+                    <li><a href="" class="pathway">Главная</a></li>
+                    <li><span>Блог</span></li>
+
+                </ul>
+            </div>
+        </div></div>
+    </section>
+
+{% block content %}
+
+
+
+<p align="center">Регистрация завершена успешно<p>
+    <p align="center">Теперь вы зарегистрированы</p>
+{% endblock %}

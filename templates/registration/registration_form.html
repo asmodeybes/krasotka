@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load static %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+
+        <title>Beauty</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="{% static "krasotka/css/bootstrap.min.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/animations.css" %}">
+        <link rel="stylesheet" href="{% static "krasotka/css/main.css" %}">
+        <script src="{% static "krasotka/js/vendor/modernizr-2.6.2.min.js" %}"></script>
+        <!--[if lt IE 9]>
+            <script src="{% static "krasotka/js/vendor/respond.min.js" %}></script>
+        <![endif]-->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <section id="logo" class="light_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <a class="navbar-brand" href="{% url "index" %}">
+                        Красотка<span>Салон красоты </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+     <section id="mainslider" class="color_section bg_image gradient">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="{% static "krasotka/example/flex_slide01.jpg" %}" alt="" />
+                    <div class="slide_description_wrapper">
+                        <div class="slide_description">
+                            <h4 data-animation="slideInDown">Добро пожаловать к нам</h4>
+                            <h2 data-animation="bounce">Красотка</h2>
+                            <h3 data-animation="fadeInLeft">Салон красоты</h3>
+                            <p data-animation="fadeInRight">
+                                <a class="theme_btn" href="#">Know More</a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <img src="{% static "krasotka/example/flex_slide02.jpg" %}" alt="" />
+                    <div class="slide_description_wrapper">
+                        <div class="slide_description">
+                            <h4 data-animation="pullUp">Зайдите на наш сайт</h4>
+                            <h4 data-animation="pullDown">и узнайте много</h4>
+                            <h4 data-animation="fadeInLeft">новой информации</h4>
+                            <p data-animation="fadeInRight">
+                                <a class="theme_btn" href="#">Know More</a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <header id="header" class="darkgrey_section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-sm-12 mainmenu_wrap">
+                    <div class="main-menu-icon visible-xs">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <nav>
+                       <ul id="mainmenu" class="menu nav sf-menu responsive-menu superfish">
+                            <li class="">
+                                <a href="{% url "index" %}">ГЛАВНАЯ</a>
+                            </li>
+                            <li class="">
+                                <a href="{% url "index" %}">О НАС</a>
+                            </li>
+                            <li class="">
+                                <a href="{%url "gallery" %}">Галлерея</a>
+
+                            </li>
+                            <li class="dropdown">
+                                <a href="{% url "blog" %}">БЛОГ</a>
+
+                            </li>
+
+                            <li class="">
+                                <a href="{% url "index" %}">КОНТАКТЫ</a>
+                            </li>
+
+                        <li>
+                             {% if  user.is_authenticated %}
+                <p><a href='{% url 'auth_logout' %}?next=/./' class="theme_btn">Выйти </a><p/>
+                </li>
+            {% else %}
+                                 <li>
+                <p><a href='{% url 'auth_login' %}' class="theme_btn">Войти</a><p/>
+                </li>
+            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+<br>
+        <br>
+{% block content %}
+
+
+
+  <p align="center"> <form method="post" action="." ></p>
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Отправить" class="tag-link"/>
+    </form>
+{% endblock %}

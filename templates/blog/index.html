@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+            <h1 class="page-header">
+                {% trans "Welcome Blog" %}
+
+            </h1>
+
+            <!-- Blog Post -->
+            {% for post in posts %}
+                <h2>
+                    <a href="{% url "post" id=post.pk %}">{{ post.title }}</a>
+                </h2>
+                <p class="lead">
+                    {% trans "by" %}{{ post.user }}
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span>
+                    {% trans "Posted on" %} {{ post.published_date }}
+                </p>
+                <hr>
+                <img class="img-responsive" width="900" height="300" src="{{ post.img.url }}" alt="{{ post.title }}"/>
+                <hr>
+                <p>
+                    {{ post.content|truncatewords:20 }}
+                </p>
+  <p><h1>Комментарии {{c_count}}</h1></p>
+                <a class="btn btn-primary" href="{% url "post" id=post.pk %}">
+                    {% trans "Read More" %} <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+                <hr>
+            {% endfor %}
+
+            <!-- Pager -->
+            <ul class="pager">
+{#                {% if pages.has_previous  %}#}
+                    <li class="previous">
+                        <a href="?page={{ pages.previous_page_number }}">&larr; {% trans "Older" %}</a>
+                    </li>
+{#                {% endif %}#}
+{#                {% if pages.has_next %}#}
+                    <li class="next">
+                        <a href="?page={{ pages.page_next_number }}">{% trans "Newer" %} &rarr;</a>
+                    </li>
+{#                {% endif %}#}
+            </ul>
+        </div>
+        {% include "include/sidebar.html" %}
+    </div>
+
+{% endblock %}
