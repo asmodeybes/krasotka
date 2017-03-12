@@ -60,9 +60,6 @@
                                 <a href="{% url "index" %}">Главная</a>
                             </li>
                             <li class="">
-                                <a href="{% url "index" %}">About</a>
-                            </li>
-                            <li class="">
                                 <a href="{% url "gallery" %}">Портфолио</a>
                                 <ul class="dropdown-menu">
                                     <li class="active">
@@ -77,6 +74,15 @@
                             <li class="dropdown active">
                                 <a href="{% url "create" %}">Создать сообщение</a>
                             </li>
+                             <li class="">
+                         {% if  user.is_authenticated %}
+                <p align="right"><a href='{% url 'auth_logout' %}?next=/./' class="theme_btn ">Выйти </a><p/>
+                </li>
+            {% else %}
+                                 <li>
+                <p align="right"><a href='{% url 'auth_login' %}' class="theme_btn">Войти</a><p/>
+                </li>
+            {% endif %}
                         </ul>
                     </nav>
                 </div>
@@ -118,6 +124,8 @@
 
 
    <div class="col-sm-12 text-center">
+       <br>
+       <br>
                     Copyright &copy; Popov&Co 2017
    </div>
 

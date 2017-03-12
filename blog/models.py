@@ -23,7 +23,7 @@ class Post(models.Model):
     published_date = models.DateTimeField(auto_created=True, verbose_name=_("Post date published"))
     category = models.ForeignKey(Category, verbose_name=_("Category"))
     user = models.ForeignKey(User, verbose_name=_("Author"))
-    img = models.ImageField(upload_to="posts", verbose_name=_("Post Image"))
+    img = models.ImageField(upload_to="posts", verbose_name=_("Фото"))
     #comment=models.ForeignKey(Comment, verbose_name=_("Comment"))
     def comments_count(self):
         return Comment.objects.filter(post_id=self.id).count()
